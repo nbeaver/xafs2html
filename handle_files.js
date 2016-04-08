@@ -56,6 +56,26 @@ function dragenter(e) {
     e.preventDefault();
 }
 
+function makeTable(matrix) {
+    var table = document.createElement('table');
+
+    for (var i = 0; i < matrix.length; i++) {
+        var table_row = document.createElement('tr');
+        table.appendChild(table_row)
+        var row = matrix[i]
+        for (var j = 0; j < row.length; j++) {
+            var element = row[j];
+            var table_element = document.createTextNode(element.toString());
+            var table_data = document.createElement('td');
+            table_data.appendChild(table_element);
+            table_row.appendChild(table_data);
+        }
+    }
+
+    var table_holder = document.getElementById("table_holder");
+    table_holder.appendChild(table);
+}
+
 function dragover(e) {
     e.stopPropagation();
     e.preventDefault();
@@ -73,4 +93,6 @@ window.onload = function() {
     dropzone.addEventListener("dragenter", dragenter, false);
     dropzone.addEventListener("dragover", dragover, false);
     dropzone.addEventListener("drop", drop, false);
+    var sample = [["a", "b"], ["c", "d"]]
+    makeTable(sample);
 }
