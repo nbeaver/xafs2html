@@ -45,10 +45,11 @@ function convertTSVtoCSV(evt) {
     return TSV.replaceAll('\t', ',');
 }
 
-function downloadCSV(CSVString) {
+var CSVstring = ''
+function downloadCSV() {
     // http://stackoverflow.com/a/20194533/1608986
     var tempAnchor = window.document.createElement('a');
-    CSVBlob = new Blob([CSVString], {type: 'text/csv'});
+    CSVBlob = new Blob([CSVstring], {type: 'text/csv'});
     tempAnchor.href = window.URL.createObjectURL(CSVBlob);
     tempAnchor.download = 'test.csv';
     tempAnchor.style.display = 'none';
@@ -61,11 +62,21 @@ function downloadCSV(CSVString) {
     document.body.removeChild(tempAnchor);
 }
 
+function matrixToCSV(matrix) {
+    var CSV = '';
+    for (var i = 0; i < matrix.length; i++) {
+        var row = matrix[i];
+        CSV += row.join(',') + '\n';
+    }
+    return CSV;
+}
 
 function processFile(evt) {
     countLines(evt);
-    makeTable(parseXAFS(evt));
-    downloadCSV(convertTSVtoCSV(evt));
+    var matrix = parseXAFS(evt)
+    makeTable(matrix);
+    CSVstring = matrixToCSV(matrix);
+    document.getElementById("download_csv_button").disabled = false;
 }
 
 function updateFileInfo(files) {
@@ -122,9 +133,11 @@ function drop(e) {
     handleFiles(files);
 }
 window.onload = function() {
-    var dropzone;
-    dropzone = document.getElementById("dropzone");
+    var dropzone = document.getElementById("dropzone");
     dropzone.addEventListener("dragenter", dragenter, false);
     dropzone.addEventListener("dragover", dragover, false);
     dropzone.addEventListener("drop", drop, false);
+
+    document.getElementById("download_csv_button").disabled = true;
+    document.getElementById("download_csv_button").addEventListener('click', downloadCSV);
 }
