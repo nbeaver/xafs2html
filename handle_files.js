@@ -26,6 +26,9 @@ function parseXAFS(evt) {
             header_contents += line + '\n';
         }
         else {
+            if (line == '') {
+                continue
+            }
             var row = line.trim().replace(/\s+/g, ' ').split(' ');
             data_matrix.push(row)
         }
