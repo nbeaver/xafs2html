@@ -46,12 +46,13 @@ function convertTSVtoCSV(evt) {
 }
 
 var CSVstring = ''
+var CSVfilename = 'test.csv'
 function downloadCSV() {
     // http://stackoverflow.com/a/20194533/1608986
     var tempAnchor = window.document.createElement('a');
     CSVBlob = new Blob([CSVstring], {type: 'text/csv'});
     tempAnchor.href = window.URL.createObjectURL(CSVBlob);
-    tempAnchor.download = 'test.csv';
+    tempAnchor.download = CSVfilename;
     tempAnchor.style.display = 'none';
 
     // Append anchor to body.
@@ -83,6 +84,7 @@ function updateFileInfo(files) {
     // For the moment, assume we have only one file.
     var currentFile = files[0];
     document.getElementById("filename").innerHTML = currentFile.name;
+    CSVfilename = currentFile.name + '.csv';
     document.getElementById("mimetype").innerHTML = currentFile.type;
     document.getElementById("fileSize").innerHTML = currentFile.size + " bytes.";
     var reader = new FileReader();
