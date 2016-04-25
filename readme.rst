@@ -1,9 +1,7 @@
+Input: MRCAT_XAFS V0.3 Datafile
 
-https://developer.mozilla.org/en-US/docs/Using_files_from_web_applications
+Output: Formatted HTML table, CSV file.
 
-https://developer.mozilla.org/en-US/docs/Web/API/FileReader
+Useful for e.g. checking live times when using a Vortex detector.
 
-https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsText
-
-TODO:
--- Fix div so that it fills to the bottom of the page instead of 300px.
+TODO: validate input
