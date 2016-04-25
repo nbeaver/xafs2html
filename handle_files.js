@@ -32,6 +32,9 @@ function parseXAFS(evt) {
     }
     var header_node = document.createTextNode(header_contents);
     var header_holder = document.getElementById("header_holder");
+    while (header_holder.hasChildNodes()) {
+        header_holder.removeChild(header_holder.lastChild);
+    }
     header_holder.appendChild(header_node);
     return data_matrix;
 }
@@ -101,6 +104,9 @@ function makeTable(matrix) {
     }
 
     var table_holder = document.getElementById("table_holder");
+    while (table_holder.hasChildNodes()) {
+        table_holder.removeChild(table_holder.lastChild);
+    }
     table_holder.appendChild(table);
 }
 
