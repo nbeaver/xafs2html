@@ -30,7 +30,7 @@ function parseXAFS(evt) {
                 continue
             }
             var row = line.trim().replace(/\s+/g, ' ').split(' ');
-            data_matrix.push(row)
+            data_matrix.push(row);
         }
     }
     var header_node = document.createTextNode(header_contents);
