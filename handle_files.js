@@ -9,6 +9,33 @@ function countLines(evt) {
     document.getElementById("fileLines").innerHTML = nLines;
 }
 
+function parseXAFS(evt) {
+    var lines = evt.target.result.split("\n");
+
+    var header_contents = ''
+    var header_end = '------------------------------------------------------------------------------------------------';
+    var in_header = true;
+    var data_matrix = new Array();
+    for (var i = 0; i < lines.length; i++) {
+        var line = lines[i]
+        if (line == header_end) {
+            in_header = false;
+            continue;
+        }
+        if (in_header == true) {
+            header_contents += line + '\n';
+        }
+        else {
+            var row = line.trim().replace(/\s+/g, ' ').split(' ');
+            data_matrix.push(row)
+        }
+    }
+    var header_node = document.createTextNode(header_contents);
+    var header_holder = document.getElementById("header_holder");
+    header_holder.appendChild(header_node);
+    return data_matrix;
+}
+
 function convertTSVtoCSV(evt) {
     var TSV = evt.target.result;
     // TODO: make this less naive.
@@ -34,6 +61,7 @@ function downloadCSV(CSVString) {
 
 function processFile(evt) {
     countLines(evt);
+    makeTable(parseXAFS(evt));
     downloadCSV(convertTSVtoCSV(evt));
 }
 
