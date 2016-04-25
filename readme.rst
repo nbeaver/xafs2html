@@ -1,3 +1,7 @@
+See here:
+
+https://nbeaver.github.io/xafs2html/
+
 Input: MRCAT_XAFS V0.3 Datafile
 
 Output: Formatted HTML table, CSV file.
