@@ -93,6 +93,4 @@ window.onload = function() {
     dropzone.addEventListener("dragenter", dragenter, false);
     dropzone.addEventListener("dragover", dragover, false);
     dropzone.addEventListener("drop", drop, false);
-    var sample = [["a", "b"], ["c", "d"]]
-    makeTable(sample);
 }
